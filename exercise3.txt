@@ -1,0 +1,228 @@
+1. Create two folders project1 and project2 locally. Create a repository in github or bitbucket, name it test_project.
+$ mkdir git_exercise3
+$ cd git_exercise3
+## create folders
+$ mkdir project1
+$ mkdir project2
+
+## create repo on github, test_project
+https://github.com/avneetmalhotra/test_project.git
+
+
+2.Switch to project1
+$ cd project1
+$ git init
+$ git remote add origin https://github.com/avneetmalhotra/test_project.git
+
+
+3. Switch to a new branch - 'staging'.
+$ git checkout -b staging
+
+
+4. Add a file in it - 'test1' and add content to it 'This is first commit'.
+$ touch test1.txt
+$ echo 'This is first commit' > test1.txt
+$ git add .
+$ git commit -m 'first commit'
+
+5. Push it to github.
+$ git push origin --all
+
+
+6. Move to folder project2.
+$ cd ../project2
+
+
+7. Clone the repo in project2.
+$ git clone https://github.com/avneetmalhotra/test_project.git
+
+
+8. Switch to staging.
+$ cd test_project
+$ git checkout staging
+
+
+9. Change the text in file 'test1' to 'This is second commit'.
+$ echo 'This is second commit' > test1.txt
+
+
+10. Commit and push to remote branch.
+$ git add .
+$ git commit -m 'second commit'
+$ git push origin --all
+
+
+11. Move to project1.
+$ cd ../../project1/
+
+
+12. Switch to staging branch.
+$ git checkout staging
+
+
+13. Change the text in file 'test1' to 'This is third commit'.
+$ echo 'This is third commit' > test1.txt
+
+
+14. Commit and push to remote branch. (Explain what happened here).
+## add all the changes to the staging area
+$ git add .
+
+## commited the changes in staging area with commit comment - 'third commit'
+$ git commit -m 'third commit'
+
+## pushed the changes to remote repo, 'origin'
+$ git push origin staging
+
+# git failed to push the changes og staging branch to the remote repo because it has some changes which are not present in the local repot project1
+$ so, we need to firsr pull the changes and then push the new changes
+
+
+15. Switch to master.
+$ git checkout -b master
+
+
+16. Merge staging branch into master.
+$ git merge master
+
+
+17. Create a new branch testing.
+$ git checkout -b testing
+
+
+18. Change the text to 'A is an alphabet' and commit.
+$ echo "A is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'test1 modified'
+
+19. Repeat the 'step 18' seven times and each time update the alphabet 'A' to 'B' to 'C' etc.(Don't forget to commit the change everytime)
+## A to B
+$ echo "B is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'A changed to B'
+
+## B to C
+$ echo "C is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'B changed to C'
+
+## C to D
+$ echo "D is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'C changed to D'
+
+## D to E
+$ echo "E is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'D changed to E'
+
+## E to F
+$ echo "F is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'E changed to F'
+
+## F to G
+$ echo "G is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'F changed to G'
+
+## G to H
+$ echo "H is an alphabet" > test1.txt 
+$ git add test1.txt
+$ git commit -m 'G changed to H'
+
+
+20. Push the branch to github.
+$ git push origin testing
+
+
+21. Checkout to master.
+$ git checkout master
+
+
+22. Change the text '1 is a number' and commit.
+$ echo '1 as a number' > test1.txt
+$ git add .
+$ git commit -m 'test1.txt modified to 1'
+
+
+23. Repeat the 'step 22' seven times and each time update the number '1' to '2' to '3' etc.(Don't forget to commit the change everytime)
+## 1 to 2
+$ echo "2 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '1 changed to 2'
+
+## 2 to 3
+$ echo "3 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '2 changed to 3'
+
+## 3 to 4
+$ echo "4 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '3 changed to 4'
+
+## 4 to 5
+$ echo "5 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '4 changed to 5'
+
+## 5 to 6
+$ echo "6 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '5 changed to 6'
+
+## 6 to 7
+$ echo "7 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '6 changed to 7'
+
+## 7 to 8
+$ echo "8 is a number" > test1.txt 
+$ git add test1.txt
+$ git commit -m '7 changed to 8'
+
+
+24. Push master branch to github.
+$ git push origin master
+
+
+25. Now, rebase testing into master(and don't push the new master and testing branch).
+$ git rebase testing
+## resolved conflicts
+
+26. Move to project2.
+$ cd ../project2/test_project/
+
+
+27. Track testing branch.
+$ git fetch
+$ git branch --track testing origin/testing
+
+
+28. Checkout to master.
+$ git checkout master
+
+
+29. Merge branch testing into master.
+$ git merge testing
+
+
+30. Share your views about the difference between master and testing.
+# master has now changes of both master and testing afte merging
+
+So, on checking differences between them.
+$ git diff testing master
+
+output:
+diff --git a/test1.txt b/test1.txt
+index 5584832..ac0db4b 100644
+--- a/test1.txt
++++ b/test1.txt
+@@ -1 +1,5 @@
++8 is a number
++
++This is first commit
++
+ H is an alphabet
+ 
